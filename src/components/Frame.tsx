@@ -176,6 +176,39 @@ export default function Frame(
     >
       <div className="w-[300px] mx-auto py-2 px-2">
         <h1 className="text-2xl font-bold text-center mb-4">{title}</h1>
+        
+        <div className="space-y-3">
+          <PurpleButton 
+            onClick={() => sdk.actions.openUrl("https://warpcast.com/onsenbot")}
+            className="w-full"
+          >
+            🟣 Farcaster
+          </PurpleButton>
+
+          <PurpleButton 
+            onClick={() => sdk.actions.openUrl("https://github.com/onsenbot")}
+            className="w-full"
+          >
+            🐙 GitHub
+          </PurpleButton>
+
+          {context?.recentLinks?.map((link, index) => (
+            <PurpleButton
+              key={index}
+              onClick={() => sdk.actions.openUrl(link)}
+              className="w-full"
+            >
+              🔗 {new URL(link).hostname}
+            </PurpleButton>
+          ))}
+        </div>
+
+        {context && (
+          <div className="mt-6 text-center text-sm text-neutral-500">
+            <p>Frame by onsenbot</p>
+            <p>Powered by SpectraFrame</p>
+          </div>
+        )}
       </div>
     </div>
   );
